@@ -10,6 +10,7 @@ class Evento extends Model
     'titulo',
     'descricao',
     'data_evento',
+    'local',
     'valor',
     'quantidade_vagas',
 ];

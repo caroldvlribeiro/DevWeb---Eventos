@@ -22,20 +22,22 @@ class EventoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'titulo' => 'required|max:255',
-            'descricao' => 'required',
-            'data_evento' => 'required|date',
-            'valor' => 'required|numeric|min:0',
-            'quantidade_vagas' => 'required|integer|min:1'
-        ]);
+    'titulo' => 'required|max:255',
+    'descricao' => 'required',
+    'data_evento' => 'required|date',
+    'local' => 'required|max:255',
+    'valor' => 'required|numeric|min:0',
+    'quantidade_vagas' => 'required|integer|min:1'
+]);
         
     Evento::create([
-        'titulo' => $request->titulo,
-        'descricao' => $request->descricao,
-        'data_evento' => $request->data_evento,
-        'valor' => $request->valor,
-        'quantidade_vagas' => $request->quantidade_vagas,
-    ]);
+    'titulo' => $request->titulo,
+    'descricao' => $request->descricao,
+    'data_evento' => $request->data_evento,
+    'local' => $request->local,
+    'valor' => $request->valor,
+    'quantidade_vagas' => $request->quantidade_vagas,
+]);
 
     return redirect()
         ->route('eventos.index')
@@ -57,23 +59,24 @@ class EventoController extends Controller
     public function update(Request $request, string $id)
 {
     $request->validate([
-        'titulo' => 'required|max:255',
-            'descricao' => 'required',
-            'data_evento' => 'required|date',
-            'valor' => 'required|numeric|min:0',
-            'quantidade_vagas' => 'required|integer|min:1'
-    ]);
+    'titulo' => 'required|max:255',
+    'descricao' => 'required',
+    'data_evento' => 'required|date',
+    'local' => 'required|max:255',
+    'valor' => 'required|numeric|min:0',
+    'quantidade_vagas' => 'required|integer|min:1'
+]);
 
     $evento = Evento::findOrFail($id);
 
     $evento->update([
-        'titulo' => $request->titulo,
-        'descricao' => $request->descricao,
-        'data_evento' => $request->data_evento,
-        'valor' => $request->valor,
-        'quantidade_vagas' => $request->quantidade_vagas
-    ]);
-
+    'titulo' => $request->titulo,
+    'descricao' => $request->descricao,
+    'data_evento' => $request->data_evento,
+    'local' => $request->local,
+    'valor' => $request->valor,
+    'quantidade_vagas' => $request->quantidade_vagas
+]);
     return redirect()
         ->route('eventos.index')
         ->with('success', 'Evento atualizado com sucesso!');
