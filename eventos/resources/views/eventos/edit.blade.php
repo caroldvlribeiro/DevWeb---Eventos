@@ -72,6 +72,7 @@
                             min="0"
                             name="valor"
                             class="form-control"
+                            value="{{ $evento->valor }}"
                             required
                         >
                     </div>
@@ -83,6 +84,7 @@
                             min="1"
                             name="quantidade_vagas"
                             class="form-control"
+                            value="{{ $evento->quantidade_vagas }}"
                             required
                         >
                     </div>
