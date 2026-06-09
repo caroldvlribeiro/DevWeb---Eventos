@@ -12,10 +12,27 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+
+    <a href="{{ url('/#quem-somos') }}"
+       class="inline-flex items-center px-1 pt-1 text-sm font-medium">
+        Quem Somos
+    </a>
+
+    <a href="{{ url('/#eventos') }}"
+       class="inline-flex items-center px-1 pt-1 text-sm font-medium">
+        Eventos
+    </a>
+
+    <a href="{{ url('/#contato') }}"
+       class="inline-flex items-center px-1 pt-1 text-sm font-medium">
+        Contato
+    </a>
+
+    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+        Dashboard
+    </x-nav-link>
+
+</div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -67,9 +84,21 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/#quem-somos')">
+    Quem Somos
+</x-responsive-nav-link>
+
+<x-responsive-nav-link :href="url('/#eventos')">
+    Eventos
+</x-responsive-nav-link>
+
+<x-responsive-nav-link :href="url('/#contato')">
+    Contato
+</x-responsive-nav-link>
+
+<x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+    Dashboard
+</x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

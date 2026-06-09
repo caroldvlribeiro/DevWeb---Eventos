@@ -14,7 +14,7 @@
     </div>
 @endif
     <h1>Lista de Eventos</h1>
-
+    <a href="#" class="btn btn-primary">Teste Bootstrap</a>
     <a href="{{ route('eventos.create') }}"
        class="btn btn-primary mb-3">
        Novo Evento

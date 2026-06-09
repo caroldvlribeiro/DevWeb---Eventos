@@ -40,9 +40,9 @@ class EventoController extends Controller
         ->with('success', 'Evento cadastrado com sucesso!');
 }
 
-    public function show(string $id)
+    public function show(Evento $evento)
     {
-        //
+        return view('eventos.show', compact('evento'));
     }
 
     public function edit(string $id)
