@@ -65,4 +65,15 @@ class EventoController extends Controller
 
         return redirect()->route('eventos.index');
     }
+    public function home()
+    {
+        $eventos = Evento::all();
+        return view('welcome', compact('eventos'));
+    }
+
+    public function dashboard()
+    {
+        $eventos = Evento::all();
+        return view('dashboard', compact('eventos'));
+    }
 }
