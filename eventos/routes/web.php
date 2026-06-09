@@ -8,8 +8,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Models\Evento;
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $totalEventos = Evento::count();
+
+    return view('dashboard', compact('totalEventos'));
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

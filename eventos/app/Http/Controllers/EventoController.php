@@ -20,16 +20,25 @@ class EventoController extends Controller
     }
 
     public function store(Request $request)
-    {
-        Evento::create([
-            'titulo' => $request->titulo,
-            'descricao' => $request->descricao,
-            'data_evento' => $request->data_evento,
-            'local' => $request->local
-        ]);
+{
+    $request->validate([
+        'titulo' => 'required|max:255',
+        'descricao' => 'required',
+        'data_evento' => 'required|date',
+        'local' => 'required|max:255'
+    ]);
 
-        return redirect()->route('eventos.index');
-    }
+    Evento::create([
+        'titulo' => $request->titulo,
+        'descricao' => $request->descricao,
+        'data_evento' => $request->data_evento,
+        'local' => $request->local
+    ]);
+
+    return redirect()
+        ->route('eventos.index')
+        ->with('success', 'Evento cadastrado com sucesso!');
+}
 
     public function show(string $id)
     {
@@ -44,25 +53,36 @@ class EventoController extends Controller
     }
 
     public function update(Request $request, string $id)
-    {
-        $evento = Evento::findOrFail($id);
+{
+    $request->validate([
+        'titulo' => 'required|max:255',
+        'descricao' => 'required',
+        'data_evento' => 'required|date',
+        'local' => 'required|max:255'
+    ]);
 
-        $evento->update([
-            'titulo' => $request->titulo,
-            'descricao' => $request->descricao,
-            'data_evento' => $request->data_evento,
-            'local' => $request->local
-        ]);
+    $evento = Evento::findOrFail($id);
 
-        return redirect()->route('eventos.index');
-    }
+    $evento->update([
+        'titulo' => $request->titulo,
+        'descricao' => $request->descricao,
+        'data_evento' => $request->data_evento,
+        'local' => $request->local
+    ]);
+
+    return redirect()
+        ->route('eventos.index')
+        ->with('success', 'Evento atualizado com sucesso!');
+}
 
     public function destroy(string $id)
-    {
-        $evento = Evento::findOrFail($id);
+{
+    $evento = Evento::findOrFail($id);
 
-        $evento->delete();
+    $evento->delete();
 
-        return redirect()->route('eventos.index');
-    }
+    return redirect()
+        ->route('eventos.index')
+        ->with('success', 'Evento removido com sucesso!');
+}
 }
