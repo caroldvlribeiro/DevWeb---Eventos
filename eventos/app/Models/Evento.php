@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     protected $fillable = [
-        'titulo',
-        'descricao',
-        'data_evento',
-        'local'
-    ];
+    'titulo',
+    'descricao',
+    'data_evento',
+    'valor',
+    'quantidade_vagas',
+];
 }

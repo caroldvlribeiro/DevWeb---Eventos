@@ -5,16 +5,17 @@
             <h2 class="fw-bold mb-0">
                 Dashboard
             </h2>
+        </div>
     </x-slot>
-
+    
     <div class="container py-4">
+        
 
+        <!-- Cards Resumo -->
         <div class="row g-4">
 
             <div class="col-md-4">
-
                 <div class="card shadow border-0">
-
                     <div class="card-body text-center">
 
                         <h6 class="text-muted">
@@ -26,15 +27,11 @@
                         </h1>
 
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-md-4">
-
                 <div class="card shadow border-0">
-
                     <div class="card-body text-center">
 
                         <h6 class="text-muted">
@@ -46,38 +43,33 @@
                         </h3>
 
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-md-4">
+                <div class="card shadow border-0">
+                    <div class="card-body text-center">
 
-               <div class="card shadow border-0">
+                        <h6 class="text-muted">
+                            Usuário
+                        </h6>
 
-    <div class="card-body text-center">
+                        <h5 class="mb-3">
+                            {{ Auth::user()->name }}
+                        </h5>
 
-        <h6 class="text-muted">
-            Usuário
-        </h6>
+                        <a href="{{ route('profile.edit') }}"
+                           class="btn btn-outline-primary">
+                            Meu Perfil
+                        </a>
 
-        <h5 class="mb-3">
-            {{ Auth::user()->name }}
-        </h5>
-
-        <a href="{{ route('profile.edit') }}"
-           class="btn btn-outline-primary">
-            Meu Perfil
-        </a>
-
-    </div>
-
-</div>
-
+                    </div>
+                </div>
             </div>
 
         </div>
 
+        <!-- Ações Rápidas -->
         <div class="card shadow border-0 mt-4">
 
             <div class="card-header bg-primary text-white">
@@ -95,81 +87,77 @@
                    class="btn btn-success">
                     Cadastrar Evento
                 </a>
-                
+
             </div>
 
         </div>
-        <div class="card shadow border-0 mt-4">
 
-    <div class="card-header">
-        Eventos Recentes
-    </div>
-
-    <div class="card-body">
-
-        <div class="row">
-
-            @forelse($eventos as $evento)
-
-                <div class="col-md-4 mb-3">
-
-                    <a href="{{ route('eventos.show', $evento->id) }}"
-                       class="text-decoration-none text-dark">
-
-                        <div class="card h-100 shadow-sm">
-
-                            <div class="card-body">
-
-                                <h5 class="fw-bold">
-                                    {{ $evento->titulo }}
-                                </h5>
-
-                                <p class="text-muted">
-                                    {{ Str::limit($evento->descricao, 80) }}
-                                </p>
-
-                                <small>
-                                    📅 {{ $evento->data_evento }}
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-            @empty
-
-                <div class="col-12 text-center text-muted">
-                    Nenhum evento cadastrado.
-                </div>
-
-            @endforelse
-
-        </div>
-
-    </div>
-
-</div>
-
+        <!-- Eventos Recentes -->
         <div class="card shadow border-0 mt-4">
 
             <div class="card-header">
-                Bem-vindo
+                <h3>Eventos </h3>
             </div>
 
             <div class="card-body">
 
-                <p class="mb-0">
-                    Utilize este painel para cadastrar, editar e excluir
-                    eventos do sistema.
-                </p>
+                <div class="row">
+
+                    @forelse($eventos as $evento)
+
+                        <div class="col-md-4 mb-3">
+
+                            <a href="{{ route('eventos.show', $evento->id) }}"
+                               class="text-decoration-none text-dark">
+
+                                <div class="card h-100 shadow-sm">
+
+                                    <div class="card-body">
+
+                                        <h5 class="fw-bold">
+                                            {{ $evento->titulo }}
+                                        </h5>
+
+                                        <p class="text-muted">
+                                            {{ Str::limit($evento->descricao, 80) }}
+                                        </p>
+
+                                        <hr>
+
+                                        <p class="mb-1">
+                                             {{ $evento->data_evento }}
+                                        </p>
+
+                                        <p class="mb-1 text-success fw-semibold">
+                                             R$ {{ number_format($evento->valor, 2, ',', '.') }}
+                                        </p>
+
+                                        <p class="mb-0">
+                                             {{ $evento->quantidade_vagas }} vagas
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    @empty
+
+                        <div class="col-12 text-center text-muted">
+                            Nenhum evento cadastrado.
+                        </div>
+
+                    @endforelse
+
+                </div>
 
             </div>
 
         </div>
+
 
     </div>
 

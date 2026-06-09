@@ -37,65 +37,60 @@
 
                     <thead class="table-dark">
                         <tr>
-                            <th>#</th>
                             <th>Título</th>
                             <th>Data</th>
-                            <th>Local</th>
-                            <th width="180">Ações</th>
+                            <th>Valor</th>
+                            <th>Vagas</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                    @forelse($eventos as $evento)
+                        @forelse($eventos as $evento)
 
-                        <tr>
+                            <tr>
+                                <td>
+                                    <a href="{{ route('eventos.show', $evento) }}"
+                                    class="text-decoration-none fw-semibold">
+                                        {{ $evento->titulo }}
+                                    </a>
 
-                            <td>{{ $evento->id }}</td>
+                                </td>
+                                <td>{{ $evento->data_evento }}</td>
+                                <td>R$ {{ number_format($evento->valor, 2, ',', '.') }}</td>
+                                <td>{{ $evento->quantidade_vagas }}</td>
 
-                            <td>
-                                <strong>{{ $evento->titulo }}</strong>
-                            </td>
+                                <td>
+                                    <a href="{{ route('eventos.edit', $evento) }}"
+                                    class="btn btn-warning btn-sm">
+                                        Editar
+                                    </a>
 
-                            <td>{{ $evento->data_evento }}</td>
+                                    <form action="{{ route('eventos.destroy', $evento) }}"
+                                        method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
 
-                            <td>{{ $evento->local }}</td>
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Deseja excluir este evento?')">
+                                            Excluir
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
 
-                            <td>
+                        @empty
 
-                                <a href="{{ route('eventos.edit', $evento->id) }}"
-                                   class="btn btn-warning btn-sm">
-                                    Editar
-                                </a>
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">
+                                    Nenhum evento cadastrado.
+                                </td>
+                            </tr>
 
-                                <form action="{{ route('eventos.destroy', $evento->id) }}"
-                                      method="POST"
-                                      class="d-inline">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit"
-                                            class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Deseja realmente excluir este evento?')">
-                                        Excluir
-                                    </button>
-
-                                </form>
-
-                            </td>
-
-                        </tr>
-
-                    @empty
-
-                        <tr>
-                            <td colspan="5" class="text-center text-muted">
-                                Nenhum evento cadastrado.
-                            </td>
-                        </tr>
-
-                    @endforelse
+                        @endforelse
 
                     </tbody>
 

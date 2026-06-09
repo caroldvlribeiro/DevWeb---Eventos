@@ -20,19 +20,21 @@ class EventoController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'titulo' => 'required|max:255',
-        'descricao' => 'required',
-        'data_evento' => 'required|date',
-        'local' => 'required|max:255'
-    ]);
-
+    {
+        $request->validate([
+            'titulo' => 'required|max:255',
+            'descricao' => 'required',
+            'data_evento' => 'required|date',
+            'valor' => 'required|numeric|min:0',
+            'quantidade_vagas' => 'required|integer|min:1'
+        ]);
+        
     Evento::create([
         'titulo' => $request->titulo,
         'descricao' => $request->descricao,
         'data_evento' => $request->data_evento,
-        'local' => $request->local
+        'valor' => $request->valor,
+        'quantidade_vagas' => $request->quantidade_vagas,
     ]);
 
     return redirect()
@@ -56,9 +58,10 @@ class EventoController extends Controller
 {
     $request->validate([
         'titulo' => 'required|max:255',
-        'descricao' => 'required',
-        'data_evento' => 'required|date',
-        'local' => 'required|max:255'
+            'descricao' => 'required',
+            'data_evento' => 'required|date',
+            'valor' => 'required|numeric|min:0',
+            'quantidade_vagas' => 'required|integer|min:1'
     ]);
 
     $evento = Evento::findOrFail($id);
@@ -67,7 +70,8 @@ class EventoController extends Controller
         'titulo' => $request->titulo,
         'descricao' => $request->descricao,
         'data_evento' => $request->data_evento,
-        'local' => $request->local
+        'valor' => $request->valor,
+        'quantidade_vagas' => $request->quantidade_vagas
     ]);
 
     return redirect()

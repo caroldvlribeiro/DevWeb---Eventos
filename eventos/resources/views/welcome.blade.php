@@ -6,6 +6,7 @@
     <title>Sistema de Eventos</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -143,14 +144,22 @@
                                 {{ \Illuminate\Support\Str::limit($evento->descricao, 100) }}
                             </p>
 
-                            <p>
-                                <strong>📅 Data:</strong>
+                            <p class="mb-2">
+                                <strong> Data:</strong>
                                 {{ $evento->data_evento }}
                             </p>
 
-                            <p>
-                                <strong>📍 Local:</strong>
+                            <p class="mb-2">
+                                <strong> Local:</strong>
                                 {{ $evento->local }}
+                            </p>
+
+                            <p class="mb-2 text-success fw-bold">
+                                 R$ {{ number_format($evento->valor, 2, ',', '.') }}
+                            </p>
+
+                            <p class="mb-0">
+                                 {{ $evento->quantidade_vagas }} vagas disponíveis
                             </p>
 
                         </div>
@@ -264,15 +273,16 @@
             Contato
         </h2>
 
-        <div class="row text-center">
+        <div class="row text-center justify-content-center">
 
-            <div class="col-md-4 mb-3">
+            <!-- E-mail -->
+            <div class="col-md-3 mb-3">
 
-                <div class="card shadow border-0">
+                <div class="card shadow border-0 h-100">
 
                     <div class="card-body">
 
-                        <h5>📧 E-mail</h5>
+                        <h5> E-mail</h5>
 
                         <p class="mb-0">
                             contato@eventos.com
@@ -284,13 +294,14 @@
 
             </div>
 
-            <div class="col-md-4 mb-3">
+            <!-- Telefone -->
+            <div class="col-md-3 mb-3">
 
-                <div class="card shadow border-0">
+                <div class="card shadow border-0 h-100">
 
                     <div class="card-body">
 
-                        <h5>📱 Telefone</h5>
+                        <h5> Telefone</h5>
 
                         <p class="mb-0">
                             (13) 99999-9999
@@ -302,19 +313,61 @@
 
             </div>
 
-            <div class="col-md-4 mb-3">
+            <!-- Localização -->
+            <div class="col-md-3 mb-3">
 
-                <div class="card shadow border-0">
+                <div class="card shadow border-0 h-100">
 
                     <div class="card-body">
 
-                        <h5>📍 Localização</h5>
+                        <h5> Localização</h5>
 
                         <p class="mb-0">
-                            Itanhaém - SP
+                            Santos - SP
                         </p>
 
                     </div>
+
+                </div>
+
+            </div>
+
+            <!-- Redes Sociais -->
+            <div class="col-md-3 mb-3">
+
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body text-center">
+
+                        <h5 class="text-nowrap"> Redes Sociais</h5>
+
+                        <div class="d-flex justify-content-center gap-4 mt-4">
+
+                            <a href="https://instagram.com"
+                            target="_blank"
+                            class="text-danger fs-2">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+
+                            <a href="https://facebook.com"
+                            target="_blank"
+                            class="text-primary fs-2">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+
+                            <a href="https://linkedin.com"
+                            target="_blank"
+                            class="text-info fs-2">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
                 </div>
 

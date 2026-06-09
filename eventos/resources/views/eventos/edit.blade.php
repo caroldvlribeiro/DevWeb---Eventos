@@ -64,7 +64,28 @@
                                value="{{ $evento->local }}"
                                required>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">Valor (R$)</label>
+                        <input
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            name="valor"
+                            class="form-control"
+                            required
+                        >
+                    </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Quantidade de Vagas</label>
+                        <input
+                            type="number"
+                            min="1"
+                            name="quantidade_vagas"
+                            class="form-control"
+                            required
+                        >
+                    </div>
                     <button type="submit"
                             class="btn btn-success">
                         Atualizar
