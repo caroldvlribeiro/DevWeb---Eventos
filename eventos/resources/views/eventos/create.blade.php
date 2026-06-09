@@ -1,64 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Novo Evento</title>
+<x-app-layout>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+    <x-slot name="header">
+        <h2 class="fw-bold mb-0">
+            Cadastrar Evento
+        </h2>
+    </x-slot>
 
-<div class="container mt-4">
+    <div class="container py-4">
 
-    <h1>Cadastrar Evento</h1>
+        <div class="card shadow-sm border-0">
 
-    <form action="{{ route('eventos.store') }}" method="POST">
+            <div class="card-body">
 
-        @csrf
+                <form action="{{ route('eventos.store') }}" method="POST">
 
-        <div class="mb-3">
-            <label>Título</label>
-            <input type="text"
-                   name="titulo"
-                   class="form-control"
-                   required>
+                    @csrf
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Título
+                        </label>
+
+                        <input type="text"
+                               name="titulo"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Descrição
+                        </label>
+
+                        <textarea name="descricao"
+                                  class="form-control"
+                                  rows="4"
+                                  required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Data do Evento
+                        </label>
+
+                        <input type="date"
+                               name="data_evento"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Local
+                        </label>
+
+                        <input type="text"
+                               name="local"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-success">
+                        Salvar
+                    </button>
+
+                    <a href="{{ route('eventos.index') }}"
+                       class="btn btn-secondary">
+                        Voltar
+                    </a>
+
+                </form>
+
+            </div>
+
         </div>
 
-        <div class="mb-3">
-            <label>Descrição</label>
-            <textarea name="descricao"
-                      class="form-control"
-                      required></textarea>
-        </div>
+    </div>
 
-        <div class="mb-3">
-            <label>Data do Evento</label>
-            <input type="date"
-                   name="data_evento"
-                   class="form-control"
-                   required>
-        </div>
-
-        <div class="mb-3">
-            <label>Local</label>
-            <input type="text"
-                   name="local"
-                   class="form-control"
-                   required>
-        </div>
-
-        <button type="submit"
-                class="btn btn-success">
-            Salvar
-        </button>
-
-        <a href="{{ route('eventos.index') }}"
-           class="btn btn-secondary">
-           Voltar
-        </a>
-
-    </form>
-
-</div>
-
-</body>
-</html>
+</x-app-layout>

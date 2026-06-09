@@ -23,11 +23,16 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
+
 Route::get('/dashboard', function () {
 
     $totalEventos = Evento::count();
+    $eventos = Evento::latest()->take(6)->get();
 
-    return view('dashboard', compact('totalEventos'));
+    return view('dashboard', compact(
+        'totalEventos',
+        'eventos'
+    ));
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
